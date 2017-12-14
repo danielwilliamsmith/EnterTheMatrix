@@ -14,15 +14,20 @@ class Matrix
 {
 	private:
 		std::vector<std::vector<int>> m_array;
-		unsigned int m_arrayAddPos;
+		const size_t m_rows;
+		const size_t m_columns;
 
 	public:
-		Matrix(size_t row, size_t column);
+		Matrix(const size_t rows, const size_t columns);
 
-		void addRow(const std::vector<int>& data);
+		void addRow(const std::vector<int> & row);
 
 		void outputMatrix();
 
+		friend Matrix& operator*(const Matrix & m1, const Matrix & m2);
+
+		size_t numRows() { return m_array.size(); }
+		size_t numColumns() { return m_array[0].size(); }
 };
 
 

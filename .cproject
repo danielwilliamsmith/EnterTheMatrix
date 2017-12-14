@@ -18,7 +18,7 @@
 					<folderInfo id="cdt.managedbuild.toolchain.gnu.mingw.base.1833295108.1255041904" name="/" resourcePath="">
 						<toolChain id="cdt.managedbuild.toolchain.gnu.mingw.base.1800834274" name="MinGW GCC" superClass="cdt.managedbuild.toolchain.gnu.mingw.base">
 							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.PE" id="cdt.managedbuild.target.gnu.platform.mingw.base.77089660" name="Debug Platform" osList="win32" superClass="cdt.managedbuild.target.gnu.platform.mingw.base"/>
-							<builder buildPath="${workspace_loc:/EnterTheMatrix/make}" command="make" id="cdt.managedbuild.toolchain.gnu.mingw.base.1833295108.1997036877" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="Gnu Make Builder" superClass="org.eclipse.cdt.build.core.settings.default.builder"/>
+							<builder arguments="" buildPath="${workspace_loc:/EnterTheMatrix/make}" command="make" id="cdt.managedbuild.toolchain.gnu.mingw.base.1833295108.1997036877" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="Gnu Make Builder" superClass="org.eclipse.cdt.build.core.settings.default.builder"/>
 							<tool id="cdt.managedbuild.tool.gnu.assembler.mingw.base.1581864282" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.mingw.base">
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1083167046" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>
@@ -38,6 +38,15 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
+					<fileInfo id="cdt.managedbuild.toolchain.gnu.mingw.base.1833295108.1323117680" name="Matrix_Test.cpp" rcbsApplicability="disable" resourcePath="tests/Matrix_Test.cpp" toolsToInvoke="cdt.managedbuild.tool.gnu.cpp.compiler.mingw.base.349691898.1818595877">
+						<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.mingw.base.349691898.1818595877" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.mingw.base.349691898">
+							<option id="gnu.cpp.compiler.option.include.paths.139183245" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+								<listOptionValue builtIn="false" value="&quot;C:\googletest-master\googletest\include&quot;"/>
+								<listOptionValue builtIn="false" value="&quot;C:\googletest-master\googlemock\include&quot;"/>
+							</option>
+							<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.462672547" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
+						</tool>
+					</fileInfo>
 				</configuration>
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
@@ -46,9 +55,6 @@
 	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
 		<project id="EnterTheMatrix.null.1118250776" name="EnterTheMatrix"/>
 	</storageModule>
-	<storageModule moduleId="scannerConfiguration">
-		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
-	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
 	<storageModule moduleId="refreshScope" versionNumber="2">
 		<configuration configurationName="Default">
@@ -56,4 +62,13 @@
 		</configuration>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
+	<storageModule moduleId="scannerConfiguration">
+		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.toolchain.gnu.mingw.base.1833295108;cdt.managedbuild.toolchain.gnu.mingw.base.1833295108.1255041904;cdt.managedbuild.tool.gnu.c.compiler.mingw.base.1218483768;cdt.managedbuild.tool.gnu.c.compiler.input.1594666333">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.toolchain.gnu.mingw.base.1833295108;cdt.managedbuild.toolchain.gnu.mingw.base.1833295108.1255041904;cdt.managedbuild.tool.gnu.cpp.compiler.mingw.base.349691898;cdt.managedbuild.tool.gnu.cpp.compiler.input.970222224">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		</scannerConfigBuildInfo>
+	</storageModule>
 </cproject>
