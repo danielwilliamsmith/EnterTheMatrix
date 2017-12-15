@@ -8,6 +8,7 @@
 #include "Matrix.hpp"
 
 #include <iostream>
+#include <stdexcept>
 #include <vector>
 
 // Matrix Constructor.
@@ -18,7 +19,15 @@ Matrix::Matrix(const size_t rows, const size_t columns): m_rows(rows), m_columns
 // Add a new row to the matrix.  It is always added after the last row.
 void Matrix::addRow(const std::vector<int> & row)
 {
-	if((m_array.size() < m_rows) && (row.size() == m_columns))
+	if(m_array.size() >= m_rows)
+	{
+		throw std::invalid_argument("Row limit reached.");
+	}
+	else if (row.size() != m_columns)
+	{
+		throw std::invalid_argument("Exceeds column limit.");
+	}
+	else
 	{
 		m_array.push_back(row);
 	}
@@ -58,28 +67,6 @@ Matrix& operator*(const Matrix& m1, const Matrix& m2)
             }
         }
     }
-}
-*/
-
-/*
-int main()
-{
-	Matrix myMatrix(3, 4);
-
-	int row1Arr[] = {1, 2, 3, 4};
-	int row2Arr[] = {5, 6, 7, 8};
-	int row3Arr[] = {9, 10, 11, 12};
-	std::vector<int> row1Vect(row1Arr, row1Arr + (sizeof(row1Arr)/sizeof(row1Arr[0])));
-	std::vector<int> row2Vect(row2Arr, row2Arr + (sizeof(row2Arr)/sizeof(row2Arr[0])));
-	std::vector<int> row3Vect(row3Arr, row3Arr + (sizeof(row3Arr)/sizeof(row3Arr[0])));
-
-	myMatrix.addRow(row1Vect);
-	myMatrix.addRow(row2Vect);
-	myMatrix.addRow(row3Vect);
-
-	myMatrix.outputMatrix();
-
-	return 0;
 }
 */
 
