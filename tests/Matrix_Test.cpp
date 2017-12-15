@@ -12,6 +12,7 @@
 #include <vector>
 
 using ::testing::ElementsAre;
+using ::testing::Eq;
 using ::testing::ContainerEq;
 
 class MatrixTest : public ::testing::Test {
@@ -38,10 +39,44 @@ class MatrixTest : public ::testing::Test {
 		}
 };
 
-TEST_F(MatrixTest, AddRowsValid){
+TEST_F(MatrixTest, NumRows){
+	ASSERT_THAT(matrixThreeByFour->numRows(), Eq((size_t)3));
+}
+
+TEST_F(MatrixTest, NumColumns){
+	ASSERT_THAT(matrixThreeByFour->numColumns(), Eq((size_t)4));
+}
+
+TEST_F(MatrixTest, AddRows){
 	EXPECT_THAT((*matrixThreeByFour)[0], ElementsAre(1, 2, 3, 4));
 	EXPECT_THAT((*matrixThreeByFour)[1], ElementsAre(5, 6, 7, 8));
 	EXPECT_THAT((*matrixThreeByFour)[2], ElementsAre(9, 10, 11, 12));
 }
+
+TEST_F(MatrixTest, AddRowsTooManyRows){
+	int rowArr[] = {13, 14, 15, 16};
+	std::vector<int> rowVect(rowArr, rowArr + (sizeof(rowArr)/sizeof(rowArr[0])));
+	matrixThreeByFour->addRow(rowVect);
+
+	EXPECT_THAT(matrixThreeByFour->numRows(), Eq((size_t)3));
+	EXPECT_THAT((*matrixThreeByFour)[0], ElementsAre(1, 2, 3, 4));
+	EXPECT_THAT((*matrixThreeByFour)[1], ElementsAre(5, 6, 7, 8));
+	EXPECT_THAT((*matrixThreeByFour)[2], ElementsAre(9, 10, 11, 12));
+}
+
+TEST_F(MatrixTest, AddRowsTooManyColumns){
+	int rowArr[] = {13, 14, 15, 16, 17};
+	std::vector<int> rowVect(rowArr, rowArr + (sizeof(rowArr)/sizeof(rowArr[0])));
+	matrixThreeByFour->addRow(rowVect);
+
+	EXPECT_THAT(matrixThreeByFour->numRows(), Eq((size_t)3));
+	EXPECT_THAT(matrixThreeByFour->numColumns(), Eq((size_t)4));
+	EXPECT_THAT((*matrixThreeByFour)[0], ElementsAre(1, 2, 3, 4));
+	EXPECT_THAT((*matrixThreeByFour)[1], ElementsAre(5, 6, 7, 8));
+	EXPECT_THAT((*matrixThreeByFour)[2], ElementsAre(9, 10, 11, 12));
+}
+
+
+
 
 
