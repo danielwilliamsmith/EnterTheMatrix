@@ -25,6 +25,7 @@ class Matrix
 		void outputMatrix();
 
 		friend Matrix& operator*(const Matrix & m1, const Matrix & m2);
+		std::vector<int>& operator[] (const size_t i) { return m_array[i]; }
 
 		size_t numRows() { return m_array.size(); }
 		size_t numColumns() { return m_array[0].size(); }
