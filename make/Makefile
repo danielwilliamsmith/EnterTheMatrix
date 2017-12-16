@@ -44,6 +44,9 @@ CXXFLAGS += -g -Wall -Wextra -pthread -O0 -fmessage-length=0
 # created to the list.
 TESTS = EnterTheMatrix_Test
 
+# Build without tests.
+NOTESTS = EnterTheMatrix
+
 # All Google Test headers.  Usually you shouldn't change this
 # definition.
 # All Google Test headers.  Usually you shouldn't change this
@@ -70,6 +73,8 @@ all : $(TESTS)
 coverage : CXXFLAGS += -fprofile-arcs -ftest-coverage -lgcov --coverage
 coverage : $(TESTS)
 
+notest : $(NOTESTS)
+
 clean : 
 	rm -f $(TESTS) *.o *.gcov *.gcda *.gcno *.xml
 
@@ -84,6 +89,9 @@ Matrix.o : $(MATRIX_SRCS_)
 	
 Matrix_Test.o : $(MATRIX_TEST_SRCS_)
 	$(CXX) $(CPPFLAGS) -I$(GTEST_DIR)/include -I$(GMOCK_DIR)/include $(CXXFLAGS) -c $(TESTS_DIR)/Matrix_Test.cpp
+
+EnterTheMatrix : Matrix.o
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
 EnterTheMatrix_Test : Matrix.o Matrix_Test.o $(GTEST_LIB)/libgtest.a $(GMOCK_LIB)/libgmock.a $(GMOCK_LIB)/gmock_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@

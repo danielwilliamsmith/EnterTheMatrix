@@ -11,13 +11,24 @@
 #include <stdexcept>
 #include <vector>
 
-// Matrix Constructor.
-Matrix::Matrix(const size_t rows, const size_t columns): m_rows(rows), m_columns(columns) {
+// Matrix constructor without any initial data.
+Matrix::Matrix(size_t rows, size_t columns): m_rows(rows), m_columns(columns) {
 	m_array.reserve(rows);
 }
 
+// Matrix constructor with initial data.
+Matrix::Matrix(size_t rows, size_t columns, int data): m_rows(rows), m_columns(columns) {
+	m_array.reserve(rows);
+
+	std::vector<int> initialize(columns, data);
+	for(unsigned int i = 0; i < m_rows; i++)
+	{
+		m_array.push_back(initialize);
+	}
+}
+
 // Add a new row to the matrix.  It is always added after the last row.
-void Matrix::addRow(const std::vector<int> & row)
+void Matrix::addRow(const std::vector<int>& row)
 {
 	if(m_array.size() >= m_rows)
 	{
@@ -49,24 +60,53 @@ void Matrix::outputMatrix()
 	}
 }
 
-/*
-Matrix& operator*(const Matrix& m1, const Matrix& m2)
+Matrix operator*(Matrix& m1, Matrix& m2)
 {
-	std::vector<std::vector<int>>::const_iterator iM1;
-	std::vector<std::vector<int>>::const_iterator iM2;
-	std::vector<std::vector<int>>::const_iterator iMResult;
+	// Check to see if multiplication is possible with the given inputs.
+	if(m1.numColumns() != m2.numRows())
+	{
+		throw std::invalid_argument("Number of left hand side matrix columns "
+				"must equal number of right hand side matrix rows.");
+	}
 
-    // Multiply the two matrices
-    for (int i = 0 ; i < ROWS ; i++)
-    {
-        for (int k = 0; k < COLUMNS; k++)
-        {
-            for (int j = 0 ; j < COLUMNS ; j++)
-            {
-                matrix_r[i][j] = matrix_r[i][j] + matrix_a[i][k] * matrix_b[k][j] ;
-            }
-        }
-    }
+	const size_t resultRows = m1.numRows();
+	const size_t resultColumns = m2.numColumns();
+	const size_t shared = m1.numColumns();
+	Matrix mResult(resultRows, resultColumns, 0);
+
+	for (unsigned int iRows = 0; iRows < resultRows; iRows++)
+	{
+		for (unsigned int iShared = 0; iShared < shared; iShared++)
+		{
+			for (unsigned int iColumns = 0; iColumns < resultColumns; iColumns++)
+			{
+				mResult[iRows][iColumns] =
+						mResult[iRows][iColumns] + m1[iRows][iShared] * m2[iShared][iColumns];
+			}
+		}
+	}
+	return mResult;
+}
+
+/*
+int main()
+{
+	int row1Arr[] = {1, 2, 3, 4};
+	int row2Arr[] = {4, 5, 6, 7};
+	std::vector<int> row1Vect(row1Arr, row1Arr + (sizeof(row1Arr)/sizeof(row1Arr[0])));
+	std::vector<int> row2Vect(row2Arr, row2Arr + (sizeof(row2Arr)/sizeof(row2Arr[0])));
+	Matrix matrixTwoByFour(2, 4);
+
+	matrixTwoByFour.addRow(row1Vect);
+	matrixTwoByFour.addRow(row2Vect);
+
+	std::cout << matrixTwoByFour[0][0] << " ";
+	std::cout << matrixTwoByFour[0][1] << " ";
+	std::cout << matrixTwoByFour[0][2] << " ";
+	std::cout << matrixTwoByFour[0][3] << " " << std::endl;
+	std::cout << matrixTwoByFour[1][0] << " ";
+	std::cout << matrixTwoByFour[1][1] << " ";
+	std::cout << matrixTwoByFour[1][2] << " ";
+	std::cout << matrixTwoByFour[1][3] << " " << std::endl;
 }
 */
-

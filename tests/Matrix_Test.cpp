@@ -17,7 +17,8 @@ using ::testing::ContainerEq;
 
 class MatrixTest : public ::testing::Test {
 	protected:
-		Matrix * matrixThreeByFour;
+		Matrix* matrixThreeByFour;
+		Matrix* matrixFourByTwo;
 
 		virtual void SetUp() {
 
@@ -33,10 +34,27 @@ class MatrixTest : public ::testing::Test {
 			matrixThreeByFour->addRow(row1Vect);
 			matrixThreeByFour->addRow(row2Vect);
 			matrixThreeByFour->addRow(row3Vect);
+
+			// Create a 4x2 matrix.
+			int row4Arr[] = {1, 2};
+			int row5Arr[] = {3, 4};
+			int row6Arr[] = {5, 6};
+			int row7Arr[] = {7, 8};
+			std::vector<int> row4Vect(row4Arr, row4Arr + (sizeof(row4Arr)/sizeof(row4Arr[0])));
+			std::vector<int> row5Vect(row5Arr, row5Arr + (sizeof(row5Arr)/sizeof(row5Arr[0])));
+			std::vector<int> row6Vect(row6Arr, row6Arr + (sizeof(row6Arr)/sizeof(row6Arr[0])));
+			std::vector<int> row7Vect(row7Arr, row7Arr + (sizeof(row7Arr)/sizeof(row7Arr[0])));
+
+			matrixFourByTwo = new Matrix(4, 2);
+			matrixFourByTwo->addRow(row4Vect);
+			matrixFourByTwo->addRow(row5Vect);
+			matrixFourByTwo->addRow(row6Vect);
+			matrixFourByTwo->addRow(row7Vect);
 		}
 
 		virtual void TearDown() {
 			delete matrixThreeByFour;
+			delete matrixFourByTwo;
 		}
 };
 
@@ -85,11 +103,11 @@ TEST(MatrixTestNoFixture, AddRowsTooManyColumns){
 	int row2Arr[] = {4, 5, 6, 7, 8};
 	std::vector<int> row1Vect(row1Arr, row1Arr + (sizeof(row1Arr)/sizeof(row1Arr[0])));
 	std::vector<int> row2Vect(row2Arr, row2Arr + (sizeof(row2Arr)/sizeof(row2Arr[0])));
-	Matrix matrixOneByFour(2, 4);
+	Matrix matrixTwoByFour(2, 4);
 
 	try {
-		matrixOneByFour.addRow(row1Vect);
-		matrixOneByFour.addRow(row2Vect);
+		matrixTwoByFour.addRow(row1Vect);
+		matrixTwoByFour.addRow(row2Vect);
 		FAIL() << "Expected std::invalid_argument exception.";
 	}
 	catch(std::invalid_argument const & err) {
@@ -99,11 +117,21 @@ TEST(MatrixTestNoFixture, AddRowsTooManyColumns){
 		FAIL() << "Did not expect any exception other than std::invalid_argument.";
 	}
 
-	EXPECT_THAT(matrixOneByFour.numRows(), Eq((size_t)1));
-	EXPECT_THAT(matrixOneByFour.numColumns(), Eq((size_t)4));
-	EXPECT_THAT(matrixOneByFour[0], ElementsAre(1, 2, 3, 4));
+	EXPECT_THAT(matrixTwoByFour.numRows(), Eq((size_t)1));
+	EXPECT_THAT(matrixTwoByFour.numColumns(), Eq((size_t)4));
+	EXPECT_THAT(matrixTwoByFour[0], ElementsAre(1, 2, 3, 4));
 }
 
+// Confirm that rows were added as expected.
+TEST_F(MatrixTest, Multiply){
+	Matrix multiplyResult(3, 2);
+
+	multiplyResult = (*matrixThreeByFour) * (*matrixFourByTwo);
+
+	EXPECT_THAT(multiplyResult[0], ElementsAre(50, 60));
+	EXPECT_THAT(multiplyResult[1], ElementsAre(114, 140));
+	EXPECT_THAT(multiplyResult[2], ElementsAre(178, 220));
+}
 
 
 
