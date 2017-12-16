@@ -76,7 +76,7 @@ coverage : $(TESTS)
 notest : $(NOTESTS)
 
 clean : 
-	rm -f $(TESTS) *.o *.gcov *.gcda *.gcno *.xml
+	rm -f $(TESTS) $(NOTESTS) *.o *.gcov *.gcda *.gcno *.xml
 
 # Builds a sample test.  A test should link with either gtest.a or
 # gtest_main.a, depending on whether it defines its own main()
