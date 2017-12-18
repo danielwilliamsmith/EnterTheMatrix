@@ -81,7 +81,7 @@ performance : $(TESTSPERF)
 notest : $(NOTESTS)
 
 clean : 
-	rm -rf $(TESTS) $(NOTESTS) *.o *.gcov *.gcda *.gcno *.xml coverage performance
+	rm -rf $(TESTS) $(TESTSPERF) $(NOTESTS) *.o *.gcov *.gcda *.gcno *.xml coverage performance
 
 # Builds a sample test.  A test should link with either gtest.a or
 # gtest_main.a, depending on whether it defines its own main()
@@ -90,7 +90,10 @@ MATRIX_SRCS_ = $(SRC_DIR)/*.cpp $(SRC_DIR)/*.hpp
 MATRIX_TEST_SRCS_ = $(SRC_DIR)/*.hpp $(TESTS_DIR)/*.cpp $(GMOCK_HEADERS)
 
 Matrix.o : $(MATRIX_SRCS_)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(SRC_DIR)/Matrix.cpp
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(SRC_DIR)/Matrix.cpp -o $@
+
+Matrix_Perf.o : $(MATRIX_SRCS_)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(SRC_DIR)/Matrix.cpp	-o $@
 	
 Matrix_Test.o : $(MATRIX_TEST_SRCS_)
 	$(CXX) $(CPPFLAGS) -I$(GTEST_DIR)/include -I$(GMOCK_DIR)/include $(CXXFLAGS) -c $(TESTS_DIR)/Matrix_Test.cpp
@@ -101,7 +104,7 @@ Matrix_Perf_Test.o : $(MATRIX_TEST_SRCS_)
 EnterTheMatrix : Matrix.o
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
-EnterTheMatrix_Perf_Test: Matrix.o Matrix_Perf_Test.o $(GTEST_LIB)/libgtest.a $(GMOCK_LIB)/libgmock.a $(GMOCK_LIB)/gmock_main.a
+EnterTheMatrix_Perf_Test: Matrix_Perf.o Matrix_Perf_Test.o $(GTEST_LIB)/libgtest.a $(GMOCK_LIB)/libgmock.a $(GMOCK_LIB)/gmock_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
 EnterTheMatrix_Test : Matrix.o Matrix_Test.o $(GTEST_LIB)/libgtest.a $(GMOCK_LIB)/libgmock.a $(GMOCK_LIB)/gmock_main.a
