@@ -9,16 +9,23 @@
 #include "gtest/gtest.h"
 #include "../src/Matrix.hpp"
 
-// Try to add a row with too many columns.
+// Multiplication of large matrices.
 TEST(MatrixPerfTest, BigMultiply) {
 	Matrix matrix1(5000, 5000, 1000);
 	Matrix matrix2(5000, 5000, 9900);
 	Matrix matrix3 = matrix1 * matrix2;
 }
 
-// Try to add a row with too many columns.
+// Addition of large matrices.
 TEST(MatrixPerfTest, BigAdd) {
 	Matrix matrix1(5000, 5000, 1000);
 	Matrix matrix2(5000, 5000, 9900);
 	Matrix matrix3 = matrix1 + matrix2;
+}
+
+// Subtraction of large matrices.
+TEST(MatrixPerfTest, BigSubtract) {
+	Matrix matrix1(5000, 5000, 1000);
+	Matrix matrix2(5000, 5000, 9900);
+	Matrix matrix3 = matrix1 - matrix2;
 }

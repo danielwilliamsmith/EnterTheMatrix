@@ -112,6 +112,30 @@ Matrix operator+(Matrix& m1, Matrix& m2)
 	return mResult;
 }
 
+Matrix operator-(Matrix& m1, Matrix& m2)
+{
+	// Check to see if addition is possible with the given inputs.
+	if((m1.numRows() != m2.numRows()) &&
+			(m1.numColumns() != m2.numColumns()))
+	{
+		throw std::invalid_argument("Matrices must be equal size.");
+	}
+
+	const size_t resultRows = m1.numRows();
+	const size_t resultColumns = m1.numColumns();
+	Matrix mResult(resultRows, resultColumns, 0);
+
+	for (unsigned int iRows = 0; iRows < resultRows; iRows++)
+	{
+		for (unsigned int iColumns = 0; iColumns < resultColumns; iColumns++)
+		{
+			mResult[iRows][iColumns] = m1[iRows][iColumns] - m2[iRows][iColumns];
+		}
+	}
+
+	return mResult;
+}
+
 /*
 int main()
 {

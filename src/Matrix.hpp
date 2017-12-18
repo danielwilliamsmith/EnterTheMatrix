@@ -29,6 +29,7 @@ class Matrix
 
 		friend Matrix operator*(Matrix& m1, Matrix& m2);
 		friend Matrix operator+(Matrix& m1, Matrix& m2);
+		friend Matrix operator-(Matrix& m1, Matrix& m2);
 
 		std::vector<int>& operator[] (const size_t i) { return m_array[i]; }
 
