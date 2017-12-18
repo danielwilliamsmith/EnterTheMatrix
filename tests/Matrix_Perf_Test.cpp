@@ -11,8 +11,14 @@
 
 // Try to add a row with too many columns.
 TEST(MatrixPerfTest, BigMultiply) {
-	Matrix matrix1(1000, 1000, 100);
-	Matrix matrix2(1000, 1000, 99);
+	Matrix matrix1(5000, 5000, 1000);
+	Matrix matrix2(5000, 5000, 9900);
 	Matrix matrix3 = matrix1 * matrix2;
 }
 
+// Try to add a row with too many columns.
+TEST(MatrixPerfTest, BigAdd) {
+	Matrix matrix1(5000, 5000, 1000);
+	Matrix matrix2(5000, 5000, 9900);
+	Matrix matrix3 = matrix1 + matrix2;
+}

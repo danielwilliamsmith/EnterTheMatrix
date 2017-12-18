@@ -19,6 +19,7 @@ class MatrixTest : public ::testing::Test {
 	protected:
 		Matrix* matrixThreeByFour;
 		Matrix* matrixFourByTwo;
+		Matrix* matrixFourByTwo2;
 
 		virtual void SetUp() {
 
@@ -50,11 +51,28 @@ class MatrixTest : public ::testing::Test {
 			matrixFourByTwo->addRow(row5Vect);
 			matrixFourByTwo->addRow(row6Vect);
 			matrixFourByTwo->addRow(row7Vect);
+
+			// Create another 4x2 matrix with different values.
+			int row8Arr[]	= {9, 10};
+			int row9Arr[]	= {11, 12};
+			int row10Arr[]	= {13, 14};
+			int row11Arr[]	= {15, 16};
+			std::vector<int> row8Vect(row8Arr, row8Arr + (sizeof(row8Arr)/sizeof(row8Arr[0])));
+			std::vector<int> row9Vect(row9Arr, row9Arr + (sizeof(row9Arr)/sizeof(row9Arr[0])));
+			std::vector<int> row10Vect(row10Arr, row10Arr + (sizeof(row10Arr)/sizeof(row10Arr[0])));
+			std::vector<int> row11Vect(row11Arr, row11Arr + (sizeof(row11Arr)/sizeof(row11Arr[0])));
+
+			matrixFourByTwo2 = new Matrix(4, 2);
+			matrixFourByTwo2->addRow(row8Vect);
+			matrixFourByTwo2->addRow(row9Vect);
+			matrixFourByTwo2->addRow(row10Vect);
+			matrixFourByTwo2->addRow(row11Vect);
 		}
 
 		virtual void TearDown() {
 			delete matrixThreeByFour;
 			delete matrixFourByTwo;
+			delete matrixFourByTwo2;
 		}
 };
 
@@ -122,8 +140,8 @@ TEST(MatrixTestNoFixture, AddRowsTooManyColumns){
 	EXPECT_THAT(matrixTwoByFour[0], ElementsAre(1, 2, 3, 4));
 }
 
-// Confirm that rows were added as expected.
-TEST_F(MatrixTest, Multiply){
+// Confirm that matrices can be multiplied.
+TEST_F(MatrixTest, MatrixMultiply){
 	Matrix multiplyResult(3, 2);
 
 	multiplyResult = (*matrixThreeByFour) * (*matrixFourByTwo);
@@ -132,6 +150,19 @@ TEST_F(MatrixTest, Multiply){
 	EXPECT_THAT(multiplyResult[1], ElementsAre(114, 140));
 	EXPECT_THAT(multiplyResult[2], ElementsAre(178, 220));
 }
+
+// Confirm that matrices can be added.
+TEST_F(MatrixTest, MatrixAdd){
+	Matrix addResult(4, 2);
+
+	addResult = (*matrixFourByTwo) + (*matrixFourByTwo2);
+
+	EXPECT_THAT(addResult[0], ElementsAre(10, 12));
+	EXPECT_THAT(addResult[1], ElementsAre(14, 16));
+	EXPECT_THAT(addResult[2], ElementsAre(18, 20));
+	EXPECT_THAT(addResult[3], ElementsAre(22, 24));
+}
+
 
 
 
