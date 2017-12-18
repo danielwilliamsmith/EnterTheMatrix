@@ -47,6 +47,9 @@ TESTS = EnterTheMatrix_Test
 # Build without tests.
 NOTESTS = EnterTheMatrix
 
+# Build with performance tests.
+TESTSPERF = EnterTheMatrix_Perf_Test
+
 # All Google Test headers.  Usually you shouldn't change this
 # definition.
 # All Google Test headers.  Usually you shouldn't change this
@@ -66,12 +69,14 @@ GMOCK_LIB = $(GMOCK_DIR)/make
 
 # House-keeping build targets.
 
-all : $(TESTS)
+all : $(TESTS) $(TESTSPERF)
 
 # Run with this option "make coverage" to produce the files needed for
 # coverage report.
 coverage : CXXFLAGS += -fprofile-arcs -ftest-coverage -lgcov --coverage
 coverage : $(TESTS)
+
+performance : $(TESTSPERF)
 
 notest : $(NOTESTS)
 
@@ -90,7 +95,13 @@ Matrix.o : $(MATRIX_SRCS_)
 Matrix_Test.o : $(MATRIX_TEST_SRCS_)
 	$(CXX) $(CPPFLAGS) -I$(GTEST_DIR)/include -I$(GMOCK_DIR)/include $(CXXFLAGS) -c $(TESTS_DIR)/Matrix_Test.cpp
 
+Matrix_Perf_Test.o : $(MATRIX_TEST_SRCS_)
+	$(CXX) $(CPPFLAGS) -I$(GTEST_DIR)/include -I$(GMOCK_DIR)/include $(CXXFLAGS) -c $(TESTS_DIR)/Matrix_Perf_Test.cpp
+
 EnterTheMatrix : Matrix.o
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
+
+EnterTheMatrix_Perf_Test: Matrix.o Matrix_Perf_Test.o $(GTEST_LIB)/libgtest.a $(GMOCK_LIB)/libgmock.a $(GMOCK_LIB)/gmock_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
 EnterTheMatrix_Test : Matrix.o Matrix_Test.o $(GTEST_LIB)/libgtest.a $(GMOCK_LIB)/libgmock.a $(GMOCK_LIB)/gmock_main.a

@@ -38,15 +38,26 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
-					<fileInfo id="cdt.managedbuild.toolchain.gnu.mingw.base.1833295108.1323117680" name="Matrix_Test.cpp" rcbsApplicability="disable" resourcePath="tests/Matrix_Test.cpp" toolsToInvoke="cdt.managedbuild.tool.gnu.cpp.compiler.mingw.base.349691898.1818595877">
-						<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.mingw.base.349691898.1818595877" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.mingw.base.349691898">
-							<option id="gnu.cpp.compiler.option.include.paths.139183245" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
-								<listOptionValue builtIn="false" value="&quot;C:\googletest-master\googletest\include&quot;"/>
-								<listOptionValue builtIn="false" value="&quot;C:\googletest-master\googlemock\include&quot;"/>
-							</option>
-							<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.462672547" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
-						</tool>
-					</fileInfo>
+					<folderInfo id="cdt.managedbuild.toolchain.gnu.mingw.base.1833295108.695270102" name="/" resourcePath="tests">
+						<toolChain id="cdt.managedbuild.toolchain.gnu.mingw.base.1363590305" name="MinGW GCC" superClass="cdt.managedbuild.toolchain.gnu.mingw.base" unusedChildren="">
+							<tool id="cdt.managedbuild.tool.gnu.assembler.mingw.base.2107695376" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.mingw.base.1581864282">
+								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.2142600241" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.archiver.mingw.base.1466607227" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.mingw.base.1597600480"/>
+							<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.mingw.base.149444935" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.mingw.base.349691898">
+								<option id="gnu.cpp.compiler.option.include.paths.1845626575" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;C:\googletest-master\googletest\include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;C:\googletest-master\googlemock\include&quot;"/>
+								</option>
+								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1354175952" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.c.compiler.mingw.base.1219628524" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.mingw.base.1218483768">
+								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.538636197" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.c.linker.mingw.base.606379394" name="MinGW C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.mingw.base.1501837660"/>
+							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.mingw.base.638701308" name="MinGW C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.mingw.base.103041392"/>
+						</toolChain>
+					</folderInfo>
 				</configuration>
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
