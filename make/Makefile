@@ -81,7 +81,7 @@ performance : $(TESTSPERF)
 notest : $(NOTESTS)
 
 clean : 
-	rm -rf $(TESTS) $(TESTSPERF) $(NOTESTS) *.o *.gcov *.gcda *.gcno *.xml coverage performance
+	rm -rf $(TESTS) $(TESTSPERF) $(NOTESTS) *.o *.gcov *.gcda *.gcno *.xml cov_analysis perf_analysis
 
 # Builds a sample test.  A test should link with either gtest.a or
 # gtest_main.a, depending on whether it defines its own main()
