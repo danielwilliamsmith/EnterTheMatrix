@@ -1,12 +1,17 @@
 <section name="Duration Summary" fontcolor="#ffffff">
 	<table sorttable="yes">
         <tr>
-                <td value="Table title" bgcolor="red" fontcolor="black" fontattribute="bold" href="" align="center" width="200"/>
-                <td value="Column 1" bgcolor="white" fontcolor="black" fontattribute="normal" href="" align="center" width="200"/>
+                <td value="Duration" bgcolor="red" fontcolor="black" fontattribute="bold" href="" align="center" width="600"/>    
         </tr>
         <tr>
-                <td value="Line 1" bgcolor="white" fontcolor="black" fontattribute="normal" href="" align="left" width="200"/>
-                <td value="Value 1" bgcolor="white" fontcolor="black" fontattribute="normal" href="" align="none" width="200"/>
+        		<td value="BigMultiply" bgcolor="white" fontcolor="black" fontattribute="normal" href="" align="center" width="200"/>
+        		<td value="BiggerMultiply" bgcolor="white" fontcolor="black" fontattribute="normal" href="" align="center" width="200"/>
+        		<td value="BiggestMultiply" bgcolor="white" fontcolor="black" fontattribute="normal" href="" align="center" width="200"/>
+        </tr>
+        <tr>
+                <td value="10" bgcolor="white" fontcolor="black" fontattribute="normal" href="normal" align="left" width="200"/>
+                <td value="60" bgcolor="white" fontcolor="black" fontattribute="normal" href="normal" align="none" width="200"/>
+                <td value="120" bgcolor="white" fontcolor="black" fontattribute="normal" href="normal" align="none" width="200"/>
         </tr>
 	</table>
 </section>
