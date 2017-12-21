@@ -1,7 +1,7 @@
-<section name="" fontcolor="">
+<section name="Duration Summary" fontcolor="#ffffff">
 	<table sorttable="yes">
         <tr>
-                <td value="Table title" bgcolor="red" fontcolor="black" fontattribute="bold" href="report.xls" align="center" width="200"/>
+                <td value="Table title" bgcolor="red" fontcolor="black" fontattribute="bold" href="" align="center" width="200"/>
                 <td value="Column 1" bgcolor="white" fontcolor="black" fontattribute="normal" href="" align="center" width="200"/>
         </tr>
         <tr>
